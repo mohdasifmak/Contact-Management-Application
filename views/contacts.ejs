@@ -1,0 +1,25 @@
+<% layout('boilerplate') %>
+
+<h2 class="mt-4">All Contacts</h2>
+<a href="/new" class="btn btn-primary mb-3">Add New Contact</a>
+
+<div class="row">
+    <% contacts.forEach(contact => { %>
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <img src="<%= contact.picture %>" class="card-img-top" alt="Contact Image" style="height: 200px;">
+            <div class="card-body">
+                <h5 class="card-title"><%= contact.name %></h5>
+                <p class="card-text"><strong>Email:</strong> <%= contact.email %></p>
+                <p class="card-text"><strong>Phone:</strong> <%= contact.phone %></p>
+                <p class="card-text"><strong>Company:</strong> <%= contact.company %></p>
+                <p class="card-text"><strong>Job Title:</strong> <%= contact.job_title %></p>
+                <a href="update/<%= contact._id %>" class="btn btn-warning mr-2">Edit</a>
+                <form action="/delete/<%= contact._id %>?_method=DELETE" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this contact?');">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <% }) %>
+</div>
